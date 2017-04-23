@@ -12,8 +12,6 @@
     "require": {
         "php": ">=5.6",
         "symfony/config": "^3.0",
-        "tm/error-log-parser": "^1.2",
-        "kassner/log-parser": "^1.2",
         "mvar/log-parser": "^1.0"
     },
     "require-dev": {

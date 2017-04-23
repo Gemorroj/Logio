@@ -1,0 +1,11 @@
+2016/12/25 10:43:33 [warn] 477#477: duplicate MIME type "text/html" in /etc/nginx/nginx.conf:38
+2016/12/25 10:43:34 [warn] 496#496: duplicate MIME type "text/html" in /etc/nginx/nginx.conf:38
+2016/12/25 14:18:25 [error] 498#498: *18359 open() "/usr/share/nginx/html/robots.txt" failed (2: No such file or directory), client: 46.229.164.102, server: localhost, request: "GET /robots.txt HTTP/1.1", host: "wap.wapinet.ru"
+2016/12/25 14:51:01 [error] 498#498: *20974 open() "/usr/share/nginx/html/robots.txt" failed (2: No such file or directory), client: 157.55.39.197, server: localhost, request: "GET /robots.txt HTTP/1.1", host: "www.blog.wapinet.ru"
+2016/12/25 15:27:39 [warn] 2662#2662: duplicate MIME type "text/html" in /etc/nginx/nginx.conf:38
+2016/12/25 15:27:39 [warn] 2665#2665: duplicate MIME type "text/html" in /etc/nginx/nginx.conf:38
+2016/12/25 15:46:12 [error] 2668#2668: *1530 open() "/usr/share/nginx/html/robots.txt" failed (2: No such file or directory), client: 46.229.164.99, server: localhost, request: "GET /robots.txt HTTP/1.1", host: "text.wapinet.ru"
+2016/12/25 16:44:08 [error] 2668#2668: *5924 "/usr/share/nginx/html/forum/index.html" is not found (2: No such file or directory), client: 77.79.130.172, server: localhost, request: "GET /forum/ HTTP/1.0", host: "wap.wapinet.ru", referrer: "http://wap.wapinet.ru/forum/"
+2017/04/23 21:49:06 [error] 445#445: *1158780 directory index of "/var/www/wapinet/web/bundles/wapinet/textbook/" is forbidden, client: 46.211.127.6, server: wapinet.ru, request: "GET /bundles/wapinet/textbook/ HTTP/1.1", host: "wapinet.ru"
+2017/04/24 00:53:45 [error] 444#444: *1171936 open() "/var/www/wapinet/web/static/file/2015/03/24/55115ee55e954.exe" failed (2: No such file or directory), client: 107.170.203.13, server: wapinet.ru, request: "GET /static/file/2015/03/24/55115ee55e954.exe HTTP/1.1", host: "wapinet.ru"
+2017/04/24 01:08:32 [warn] 21184#21184: *299432 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000002912, client: 127.0.0.1, server: localhost, request: "POST /TopbyEDSservices/services/EDSService HTTP/1.1", host: "localhost:8080"

@@ -7,15 +7,15 @@ use Symfony\Component\Yaml\Yaml;
 
 class Config
 {
-    private $config = [];
+    private $parameters = [];
 
     /**
-     * @param mixed $data
+     * @param array $data
      */
-    final private function __construct($data)
+    final private function __construct(array $data)
     {
-        $this->config = (new Processor())->processConfiguration(
-            new Configuration\LogioConfiguration(),
+        $this->parameters = (new Processor())->processConfiguration(
+            new Configuration\LogioConfiguration($data),
             [$data]
         );
     }
@@ -32,8 +32,8 @@ class Config
     /**
      * @return array
      */
-    public function getConfig()
+    public function getParameters()
     {
-        return $this->config;
+        return $this->parameters;
     }
 }
