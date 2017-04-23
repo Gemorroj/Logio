@@ -1,0 +1,16 @@
+apache:
+    error_log_format: ""
+    error_log_path: ""
+    disabled: false
+nginx:
+    error_log_format: ""
+    error_log_path: ""
+    disabled: false
+php:
+    error_log_format: ""
+    error_log_path: ""
+    disabled: false
+mysql:
+    error_log_format: ""
+    error_log_path: ""
+    disabled: false
