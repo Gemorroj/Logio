@@ -6,10 +6,16 @@ use MVar\LogParser\LineParserInterface;
 
 class Parser implements LineParserInterface
 {
+    protected $name;
     protected $parameters = [];
 
-    public function __construct(array $parameters)
+    /**
+     * @param string $name
+     * @param array $parameters
+     */
+    public function __construct($name, array $parameters)
     {
+        $this->name = $name;
         $this->parameters = $parameters;
     }
 
@@ -19,6 +25,14 @@ class Parser implements LineParserInterface
     public function getParameters()
     {
         return $this->parameters;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -37,10 +51,29 @@ class Parser implements LineParserInterface
                 continue;
             }
 
-            //print_r($matches);
-            $data[$key] = $matches[1];
+            if (isset($this->getParameters()['cast'][$key])) {
+                $data[$key] = $this->castData(
+                    $this->getParameters()['cast'][$key],
+                    $matches[1]
+                );
+            } else {
+                $data[$key] = $matches[1];
+            }
         }
 
         return $data ?: null;
+    }
+
+    /**
+     * @param string $className
+     * @param string $value
+     * @return object
+     */
+    protected function castData($className, $value)
+    {
+        if (!\class_exists($className)) {
+            throw new \InvalidArgumentException(sprintf('Class "%s" not found', $className));
+        }
+        return new $className($value);
     }
 }

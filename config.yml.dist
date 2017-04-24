@@ -5,6 +5,8 @@ apache:
         type: '/\[(warn|error|debug|info|crit|emerg|notice|alert)\]/'
         client: '/\] \[client ([0-9\.]*)\]/'
         message: '/\]+\s+(?!\[)(.*)/'
+    cast:
+        date: '\DateTime'
 nginx:
     path: '/var/log/nginx/error.log'
     format:
@@ -15,6 +17,8 @@ nginx:
         server: '/ server: ([^,]+),/'
         request: '/ request: "([^"]+)",/'
         host: '/ host: "([^"]+)"/'
+    cast:
+        date: '\DateTime'
 php_fpm:
     path: '/var/log/php-fpm/error.log'
 php:

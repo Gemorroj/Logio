@@ -2,6 +2,7 @@
 namespace Tests\Logio;
 
 use Logio\Config;
+use Logio\Iterator;
 use Logio\Logio;
 use Logio\Parser;
 
@@ -31,6 +32,21 @@ class LogioTest extends \PHPUnit_Framework_TestCase
 
     public function testParse()
     {
-        $this->logio->parse();
+        /** @var Iterator $item */
+        foreach ($this->logio->run() as $item) {
+            /**
+             * @var string $key
+             * @var array|null $data
+             */
+            foreach ($item as $key => $data) {
+                $this->assertInternalType('string', $key);
+                if (null !== $data) {
+                    $this->assertInternalType('array', $data);
+                    $this->assertNotEmpty($data);
+                }
+                //var_dump($key, $data);
+                //echo "\n";
+            }
+        }
     }
 }

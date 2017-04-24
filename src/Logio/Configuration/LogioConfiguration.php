@@ -57,8 +57,10 @@ class LogioConfiguration implements ConfigurationInterface
                 ->scalarNode('date')->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('type')->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('client')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('message')->isRequired()->cannotBeEmpty()->end();
-
+                ->scalarNode('message')->isRequired()->cannotBeEmpty()->end()
+            ->end()->end()
+            ->arrayNode('cast')->children()
+                ->scalarNode('date')->end();
         return $node;
     }
 
@@ -74,7 +76,10 @@ class LogioConfiguration implements ConfigurationInterface
                 ->scalarNode('client')->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('server')->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('request')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('host')->isRequired()->cannotBeEmpty()->end();
+                ->scalarNode('host')->isRequired()->cannotBeEmpty()->end()
+            ->end()->end()
+            ->arrayNode('cast')->children()
+                ->scalarNode('date')->end();
 
         return $node;
     }

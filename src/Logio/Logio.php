@@ -2,7 +2,6 @@
 
 namespace Logio;
 
-use MVar\LogParser\LogIterator;
 
 class Logio
 {
@@ -13,8 +12,8 @@ class Logio
 
     public function __construct(Config $config)
     {
-        foreach ($config->getParameters() as $key => $parameters) {
-            $this->parsers[$key] = new Parser($parameters);
+        foreach ($config->getParameters() as $name => $parameters) {
+            $this->parsers[] = new Parser($name, $parameters);
         }
     }
 
@@ -26,14 +25,15 @@ class Logio
         return $this->parsers;
     }
 
-
-    public function parse()
+    /**
+     * Iterator objects
+     *
+     * @return \Generator
+     */
+    public function run()
     {
-        foreach ($this->getParsers() as $key => $parser) {
-            echo $key . "\n";
-            foreach (new LogIterator($parser->getParameters()['path'], $parser) as $data) {
-                \print_r($data);
-            }
+        foreach ($this->getParsers() as $parser) {
+            yield (new Iterator($parser->getParameters()['path'], $parser))->setName($parser->getName());
         }
     }
 }
