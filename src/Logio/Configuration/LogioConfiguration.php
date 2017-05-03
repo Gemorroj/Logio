@@ -28,9 +28,7 @@ class LogioConfiguration implements ConfigurationInterface
         }
 
         if (isset($this->data['php_fpm'])) {
-            $rootNode
-                ->children()->arrayNode('php_fpm')->children()
-                ->scalarNode('path')->isRequired()->cannotBeEmpty()->end();
+            $rootNode->append($this->getPhpFpmBuilder());
         }
 
         if (isset($this->data['php'])) {
@@ -81,6 +79,23 @@ class LogioConfiguration implements ConfigurationInterface
             ->arrayNode('cast')->children()
                 ->scalarNode('date')->end();
 
+        return $node;
+    }
+
+    protected function getPhpFpmBuilder()
+    {
+        $node = (new TreeBuilder())->root('php_fpm');
+        $node->children()
+            ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
+            ->arrayNode('format')->children()
+            ->scalarNode('date')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('type')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('pool')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('child')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('message')->isRequired()->cannotBeEmpty()->end()
+            ->end()->end()
+            ->arrayNode('cast')->children()
+            ->scalarNode('date')->end();
         return $node;
     }
 }

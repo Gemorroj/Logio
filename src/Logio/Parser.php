@@ -2,6 +2,7 @@
 
 namespace Logio;
 
+use Logio\Exception\ParserException;
 use MVar\LogParser\LineParserInterface;
 
 class Parser implements LineParserInterface
@@ -45,8 +46,11 @@ class Parser implements LineParserInterface
         $data = [];
 
         foreach ($this->getParameters()['format'] as $key => $pattern) {
-            $result = \preg_match($pattern, $line, $matches);
+            $result = @\preg_match($pattern . 'S', $line, $matches);
 
+            if (false === $result) {
+                $this->makeParserException($line, $pattern);
+            }
             if (1 !== $result) {
                 continue;
             }
@@ -62,6 +66,34 @@ class Parser implements LineParserInterface
         }
 
         return $data ?: null;
+    }
+
+    /**
+     * @param string $line
+     * @param string $pattern
+     * @throws ParserException
+     */
+    protected function makeParserException($line, $pattern)
+    {
+        $pregErrorCode = \preg_last_error();
+        if (PREG_NO_ERROR !== $pregErrorCode) {
+            $exception = new ParserException(\array_flip(\get_defined_constants(true)['pcre'])[$pregErrorCode]);
+            $exception->setErrorLogLine($line);
+            $exception->setPattern($pattern);
+            throw $exception;
+        }
+        $error = \error_get_last();
+        if ($error) {
+            $exception = new ParserException($error['message']);
+            $exception->setErrorLogLine($line);
+            $exception->setPattern($pattern);
+            throw $exception;
+        }
+
+        $exception = new ParserException('Unknown PCRE error');
+        $exception->setErrorLogLine($line);
+        $exception->setPattern($pattern);
+        throw $exception;
     }
 
     /**

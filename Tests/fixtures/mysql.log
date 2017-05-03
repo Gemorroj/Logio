@@ -1,0 +1,76 @@
+2016-03-01T22:22:36.332172Z mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+2016-03-01T22:22:36.541661Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+2016-03-01T22:22:36.541753Z 0 [Warning] 'NO_AUTO_CREATE_USER' sql mode was not set.
+2016-03-01T22:22:36.542456Z 0 [Note] /usr/sbin/mysqld (mysqld 5.7.11-log) starting as process 27326 ...
+2016-03-01T22:22:36.550981Z 0 [Note] InnoDB: PUNCH HOLE support available
+2016-03-01T22:22:36.551011Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+2016-03-01T22:22:36.551022Z 0 [Note] InnoDB: Uses event mutexes
+2016-03-01T22:22:36.551032Z 0 [Note] InnoDB: GCC builtin __sync_synchronize() is used for memory barrier
+2016-03-01T22:22:36.551041Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2016-03-01T22:22:36.551051Z 0 [Note] InnoDB: Using Linux native AIO
+2016-03-01T22:22:36.551551Z 0 [Note] InnoDB: Number of pools: 1
+2016-03-01T22:22:36.551706Z 0 [Note] InnoDB: Using CPU crc32 instructions
+2016-03-01T22:22:36.563086Z 0 [Note] InnoDB: Initializing buffer pool, total size = 8G, instances = 8, chunk size = 128M
+2016-03-01T22:22:37.124849Z 0 [Note] InnoDB: Completed initialization of buffer pool
+2016-03-01T22:22:37.198938Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+2016-03-01T22:22:37.211105Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+2016-03-01T22:22:37.398107Z 0 [Warning] InnoDB: Upgrading redo log: 2*16384 pages, LSN=431901952800
+2016-03-01T22:22:37.509036Z 0 [Warning] InnoDB: Starting to delete and rewrite log files.
+2016-03-01T22:22:37.800194Z 0 [Note] InnoDB: Setting log file ./ib_logfile101 size to 256 MB
+2016-03-01T22:22:37.800861Z 0 [Note] InnoDB: Progress in MB:
+ 100 200
+2016-03-01T22:22:38.769319Z 0 [Note] InnoDB: Setting log file ./ib_logfile1 size to 256 MB
+2016-03-01T22:22:38.769531Z 0 [Note] InnoDB: Progress in MB:
+ 100 200
+2016-03-01T22:22:39.884951Z 0 [Note] InnoDB: Renaming log file ./ib_logfile101 to ./ib_logfile0
+2016-03-01T22:22:39.885048Z 0 [Warning] InnoDB: New log files created, LSN=431901952800
+2016-03-01T22:22:39.886708Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+2016-03-01T22:22:39.886779Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+2016-03-01T22:22:39.934557Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+2016-03-01T22:22:39.935866Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+2016-03-01T22:22:39.935888Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+2016-03-01T22:22:39.936116Z 0 [Note] InnoDB: Creating sys_virtual system tables.
+2016-03-01T22:22:39.937068Z 0 [Note] InnoDB: sys_virtual table created
+2016-03-01T22:22:39.937648Z 0 [Note] InnoDB: 5.7.11 started; log sequence number 0
+2016-03-01T22:22:39.938928Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+2016-03-01T22:22:39.939115Z 0 [ERROR] InnoDB: Cannot open '/var/lib/mysql/ib_buffer_pool' for reading: No such file or directory
+2016-03-01T22:22:39.939366Z 0 [Note] Plugin 'FEDERATED' is disabled.
+2016-03-01T22:22:39.940221Z 0 [Warning] System table 'plugin' is expected to be transactional.
+2016-03-01T22:22:39.945465Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+2016-03-01T22:22:39.945671Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+2016-03-01T22:22:39.947616Z 0 [Warning] Failed to set up SSL because of the following SSL library error: SSL context is not usable without certificate and private key
+2016-03-01T22:22:39.947916Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+2016-03-01T22:22:39.948015Z 0 [Note] IPv6 is available.
+2016-03-01T22:22:39.948035Z 0 [Note]   - '::' resolves to '::';
+2016-03-01T22:22:39.948047Z 0 [Note] Server socket created on IP: '::'.
+2016-03-01T22:22:39.949481Z 0 [Warning] Failed to open optimizer cost constant tables
+
+2016-03-01T22:22:39.951685Z 0 [Warning] System table 'time_zone_leap_second' is expected to be transactional.
+2016-03-01T22:22:39.951703Z 0 [Warning] System table 'time_zone_name' is expected to be transactional.
+2016-03-01T22:22:39.951710Z 0 [Warning] System table 'time_zone' is expected to be transactional.
+2016-03-01T22:22:39.951717Z 0 [Warning] System table 'time_zone_transition_type' is expected to be transactional.
+2016-03-01T22:22:39.951723Z 0 [Warning] System table 'time_zone_transition' is expected to be transactional.
+2016-03-01T22:22:39.952517Z 0 [Warning] System table 'servers' is expected to be transactional.
+2016-03-01T22:22:39.953775Z 0 [Warning] Info table is not ready to be used. Table 'mysql.slave_master_info' cannot be opened.
+2016-03-01T22:22:39.954323Z 0 [Warning] Info table is not ready to be used. Table 'mysql.slave_relay_log_info' cannot be opened.
+2016-03-01T22:22:39.954604Z 0 [ERROR] Incorrect definition of table performance_schema.events_waits_current: expected column 'NESTING_EVENT_TYPE' at position 15 to have type enum('TRANSACTION','STATEMENT','STAGE','WAIT', found type enum('STATEMENT','STAGE','WAIT').
+2016-03-01T22:22:39.954725Z 0 [ERROR] Incorrect definition of table performance_schema.events_waits_history: expected column 'NESTING_EVENT_TYPE' at position 15 to have type enum('TRANSACTION','STATEMENT','STAGE','WAIT', found type enum('STATEMENT','STAGE','WAIT').
+2016-03-01T22:22:39.954841Z 0 [ERROR] Incorrect definition of table performance_schema.events_waits_history_long: expected column 'NESTING_EVENT_TYPE' at position 15 to have type enum('TRANSACTION','STATEMENT','STAGE','WAIT', found type enum('STATEMENT','STAGE','WAIT').
+2016-03-01T22:22:39.955201Z 0 [ERROR] Incorrect definition of table performance_schema.events_waits_summary_by_user_by_event_name: expected column 'USER' at position 0 to have type char(32), found type char(16).
+2016-03-01T22:22:39.955316Z 0 [ERROR] Incorrect definition of table performance_schema.events_waits_summary_by_account_by_event_name: expected column 'USER' at position 0 to have type char(32), found type char(16).
+2016-03-01T22:22:39.956247Z 0 [ERROR] Column count of performance_schema.setup_actors is wrong. Expected 5, found 3. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.
+2016-03-01T22:22:39.956494Z 0 [ERROR] Incorrect definition of table performance_schema.setup_objects: expected column 'OBJECT_TYPE' at position 0 to have type enum('EVENT','FUNCTION','PROCEDURE','TABLE','TRIGGER', found type enum('TABLE').
+2016-03-01T22:22:39.957080Z 0 [ERROR] Column count of performance_schema.table_lock_waits_summary_by_table is wrong. Expected 68, found 73. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.
+2016-03-01T22:22:39.957190Z 0 [ERROR] Column count of performance_schema.threads is wrong. Expected 17, found 14. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.
+2016-03-01T22:22:39.957288Z 0 [ERROR] Column count of performance_schema.events_stages_current is wrong. Expected 12, found 10. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.
+2016-03-01T22:22:39.957393Z 0 [ERROR] Column count of performance_schema.events_stages_history is wrong. Expected 12, found 10. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.
+2016-03-01T22:22:39.957490Z 0 [ERROR] Column count of performance_schema.events_stages_history_long is wrong. Expected 12, found 10. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.
+2016-03-01T22:22:39.957679Z 0 [ERROR] Incorrect definition of table performance_schema.events_stages_summary_by_account_by_event_name: expected column 'USER' at position 0 to have type char(32), found type char(16).
+2016-03-01T22:22:39.957808Z 0 [ERROR] Incorrect definition of table performance_schema.events_stages_summary_by_user_by_event_name: expected column 'USER' at position 0 to have type char(32), found type char(16).
+2016-03-01T22:22:39.958156Z 0 [ERROR] Column count of performance_schema.events_statements_current is wrong. Expected 41, found 40. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.
+2016-03-01T22:22:39.958311Z 0 [ERROR] Column count of performance_schema.events_statements_history is wrong. Expected 41, found 40. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.
+2016-03-01T22:22:39.958469Z 0 [ERROR] Column count of performance_schema.events_statements_history_long is wrong. Expected 41, found 40. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.
+2016-03-01T22:22:39.958687Z 0 [ERROR] Incorrect definition of table performance_schema.events_statements_summary_by_account_by_event_name: expected column 'USER' at position 0 to have type char(32), found type char(16).
+2016-03-01T22:22:39.958827Z 0 [ERROR] Incorrect definition of table performance_schema.events_statements_summary_by_user_by_event_name: expected column 'USER' at position 0 to have type char(32), found type char(16).
+2016-03-01T22:22:39.959235Z 0 [ERROR] Native table 'performance_schema'.'events_statements_summary_by_program' has the wrong structure
+2017-05-03T07:56:15.250765Z 13123212 [Note] Aborted connection 13123212 to db: 'as2' user: 'as2' host: 'localhost' (Got timeout reading communication packets)

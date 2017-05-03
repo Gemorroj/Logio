@@ -20,7 +20,15 @@ nginx:
     cast:
         date: '\DateTime'
 php_fpm:
-    path: '/var/log/php-fpm/error.log'
+    path: 'Tests/fixtures/php-fpm.log'
+    format:
+        date: '/^\[(.*?)\]/'
+        type: '/\] (ALERT|ERROR|WARNING|NOTICE|DEBUG): /'
+        pool: '/: \[pool (.+?)] /'
+        child: '/\] child ([0-9]+)/'
+        message: '/\] (?:ALERT|ERROR|WARNING|NOTICE|DEBUG): (?:\[pool [a-z]+\] ){0,1}(?:child [0-9]+(?:,){0,1} ){0,1}(.+)+/'
+    cast:
+        date: '\DateTime'
 php:
     path: '/var/log/php-fpm/www-error.log'
 mysql:
