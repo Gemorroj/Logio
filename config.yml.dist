@@ -31,5 +31,13 @@ php_fpm:
         date: '\DateTime'
 php:
     path: '/var/log/php-fpm/www-error.log'
+    format:
+        date: '/^\[(.*?)\]/'
+        type: '/\] (.+):  /'
+        message: '/\] (?:.+):  (.+) in (?:.+)(?::| on line )[0-9]+/'
+        file: '/ in (.+)(?::| on line )[0-9]+/'
+        line: '/ in (?:.+)(?::| on line )([0-9]+)/'
+    cast:
+        date: '\DateTime'
 mysql:
     path: '/var/log/mysql/mysql_error.log'

@@ -20,11 +20,9 @@ class ParserTest extends \PHPUnit_Framework_TestCase
 
     public function testParseLineApache()
     {
-        $line = '[Sun Mar 26 03:13:18 2017] [notice] Apache/2.2.15 (Unix) mod_ssl/2.2.15 OpenSSL/1.0.1e-fips mod_perl/2.0.4 Perl/v5.10.1 configured -- resuming normal operations';
-
         $parser = new Parser('test', $this->config->getParameters()['apache']);
-        $data = $parser->parseLine($line);
 
+        $data = $parser->parseLine('[Sun Mar 26 03:13:18 2017] [notice] Apache/2.2.15 (Unix) mod_ssl/2.2.15 OpenSSL/1.0.1e-fips mod_perl/2.0.4 Perl/v5.10.1 configured -- resuming normal operations');
         $this->assertEquals([
             'date' => new \DateTime('Sun Mar 26 03:13:18 2017'),
             'type' => 'notice',
@@ -34,11 +32,9 @@ class ParserTest extends \PHPUnit_Framework_TestCase
 
     public function testParseLineNginx()
     {
-        $line = '2017/04/24 01:08:32 [warn] 21184#21184: *299432 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000002912, client: 127.0.0.1, server: localhost, request: "POST /TopbyEDSservices/services/EDSService HTTP/1.1", host: "localhost:8080"';
-
         $parser = new Parser('test', $this->config->getParameters()['nginx']);
-        $data = $parser->parseLine($line);
 
+        $data = $parser->parseLine('2017/04/24 01:08:32 [warn] 21184#21184: *299432 a client request body is buffered to a temporary file /var/cache/nginx/client_temp/0000002912, client: 127.0.0.1, server: localhost, request: "POST /TopbyEDSservices/services/EDSService HTTP/1.1", host: "localhost:8080"');
         $this->assertEquals([
             'date' => new \DateTime('2017/04/24 01:08:32'),
             'type' => 'warn',
@@ -52,16 +48,37 @@ class ParserTest extends \PHPUnit_Framework_TestCase
 
     public function testParseLinePhpFpm()
     {
-        $line = '[17-Jul-2016 15:24:26] WARNING: [pool www] seems busy (you may need to increase pm.start_servers, or pm.min/max_spare_servers), spawning 8 children, there are 4 idle, and 21 total children';
-
         $parser = new Parser('test', $this->config->getParameters()['php_fpm']);
-        $data = $parser->parseLine($line);
 
+        $data = $parser->parseLine('[17-Jul-2016 15:24:26] WARNING: [pool www] seems busy (you may need to increase pm.start_servers, or pm.min/max_spare_servers), spawning 8 children, there are 4 idle, and 21 total children');
         $this->assertEquals([
             'date' => new \DateTime('17-Jul-2016 15:24:26'),
             'type' => 'WARNING',
             'pool' => 'www',
             'message' => 'seems busy (you may need to increase pm.start_servers, or pm.min/max_spare_servers), spawning 8 children, there are 4 idle, and 21 total children',
+        ], $data);
+    }
+
+    public function testParseLinePhp()
+    {
+        $parser = new Parser('test', $this->config->getParameters()['php']);
+
+        $data = $parser->parseLine('[21-Feb-2017 21:20:36 Europe/Moscow] PHP Notice:  Undefined index: captcha_keystring in /var/www/forum/register.php on line 70');
+        $this->assertEquals([
+            'date' => new \DateTime('21-Feb-2017 21:20:36 Europe/Moscow'),
+            'type' => 'PHP Notice',
+            'message' => 'Undefined index: captcha_keystring',
+            'file' => '/var/www/forum/register.php',
+            'line' => '70',
+        ], $data);
+
+        $data = $parser->parseLine('[21-Feb-2017 15:54:52 Europe/Moscow] PHP Fatal error:  Uncaught InvalidArgumentException: The directory "/var/www/wapinet/var/cache/prod/vich_uploader" is not writable. in /var/www/wapinet/vendor/jms/metadata/src/Metadata/Cache/FileCache.php:17');
+        $this->assertEquals([
+            'date' => new \DateTime('21-Feb-2017 15:54:52 Europe/Moscow'),
+            'type' => 'PHP Fatal error',
+            'message' => 'Uncaught InvalidArgumentException: The directory "/var/www/wapinet/var/cache/prod/vich_uploader" is not writable.',
+            'file' => '/var/www/wapinet/vendor/jms/metadata/src/Metadata/Cache/FileCache.php',
+            'line' => '17',
         ], $data);
     }
 }

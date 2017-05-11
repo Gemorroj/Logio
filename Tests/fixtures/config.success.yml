@@ -29,7 +29,15 @@ php_fpm:
         message: '/\] (?:ALERT|ERROR|WARNING|NOTICE|DEBUG): (?:\[pool [a-z]+\] ){0,1}(?:child [0-9]+(?:,){0,1} ){0,1}(.+)+/'
     cast:
         date: '\DateTime'
-#php:
-#    path: 'Tests/fixtures/php.log'
+php:
+    path: 'Tests/fixtures/php.log'
+    format:
+        date: '/^\[(.*?)\]/'
+        type: '/\] (.+):  /'
+        message: '/\] (?:.+):  (.+) in (?:.+)(?::| on line )[0-9]+/'
+        file: '/ in (.+)(?::| on line )[0-9]+/'
+        line: '/ in (?:.+)(?::| on line )([0-9]+)/'
+    cast:
+        date: '\DateTime'
 #mysql:
 #    path: 'Tests/fixtures/mysql.log'
