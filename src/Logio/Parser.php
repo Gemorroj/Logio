@@ -57,11 +57,6 @@ class Parser implements LineParserInterface
             }
 
             if (isset($this->getParameters()['cast'][$key])) {
-                var_dump([
-                    'line' => $line,
-                    'pattern' => $pattern,
-                    'matches' => $matches
-                ]);
                 $data[$key] = $this->castData(
                     $this->getParameters()['cast'][$key],
                     $matches[1]
