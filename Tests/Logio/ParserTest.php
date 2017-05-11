@@ -27,6 +27,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             'date' => new \DateTime('Sun Mar 26 03:13:18 2017'),
             'type' => 'notice',
             'message' => 'Apache/2.2.15 (Unix) mod_ssl/2.2.15 OpenSSL/1.0.1e-fips mod_perl/2.0.4 Perl/v5.10.1 configured -- resuming normal operations',
+            'client' => null,
         ], $data);
     }
 
@@ -56,6 +57,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             'type' => 'WARNING',
             'pool' => 'www',
             'message' => 'seems busy (you may need to increase pm.start_servers, or pm.min/max_spare_servers), spawning 8 children, there are 4 idle, and 21 total children',
+            'child' => null,
         ], $data);
     }
 
@@ -79,6 +81,27 @@ class ParserTest extends \PHPUnit_Framework_TestCase
             'message' => 'Uncaught InvalidArgumentException: The directory "/var/www/wapinet/var/cache/prod/vich_uploader" is not writable.',
             'file' => '/var/www/wapinet/vendor/jms/metadata/src/Metadata/Cache/FileCache.php',
             'line' => '17',
+        ], $data);
+    }
+
+    public function testParseLineMysqlFpm()
+    {
+        $parser = new Parser('test', $this->config->getParameters()['mysql']);
+
+        $data = $parser->parseLine('2016-03-01T22:22:39.957490Z 10 [ERROR] Column count of performance_schema.events_stages_history_long is wrong. Expected 12, found 10. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.');
+        $this->assertEquals([
+            'date' => new \DateTime('2016-03-01T22:22:39.957490Z'),
+            'thread' => '10',
+            'type' => 'ERROR',
+            'message' => 'Column count of performance_schema.events_stages_history_long is wrong. Expected 12, found 10. Created with MySQL 50629, now running 50711. Please use mysql_upgrade to fix this error.',
+        ], $data);
+
+        $data = $parser->parseLine('2016-03-01T22:22:36.332172Z mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql');
+        $this->assertEquals([
+            'date' => new \DateTime('2016-03-01T22:22:36.332172Z'),
+            'thread' => null,
+            'type' => null,
+            'message' => 'mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql',
         ], $data);
     }
 }

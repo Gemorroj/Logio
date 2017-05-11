@@ -41,3 +41,10 @@ php:
         date: '\DateTime'
 mysql:
     path: '/var/log/mysql/mysql_error.log'
+    format:
+        date: '/^([0-9A-Z\.\-:]+) /'
+        thread: '/^(?:[0-9A-Z\.\-:]+) ([0-9]+) \[/'
+        type: '/(?:[0-9]+) \[(.+)\] /'
+        message: '/ (?:[0-9]+ \[.+\] ){0,1}(.+)+/'
+    cast:
+        date: '\DateTime'

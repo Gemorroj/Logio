@@ -36,9 +36,7 @@ class LogioConfiguration implements ConfigurationInterface
         }
 
         if (isset($this->data['mysql'])) {
-            $rootNode
-                ->children()->arrayNode('mysql')->children()
-                ->scalarNode('path')->isRequired()->cannotBeEmpty()->end();
+            $rootNode->append($this->getMysqlBuilder());
         }
 
         return $treeBuilder;
@@ -108,6 +106,23 @@ class LogioConfiguration implements ConfigurationInterface
             ->scalarNode('message')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('file')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('line')->isRequired()->cannotBeEmpty()->end()
+            ->end()->end()
+            ->arrayNode('cast')->children()
+            ->scalarNode('date')->end();
+        return $node;
+    }
+
+
+    protected function getMysqlBuilder()
+    {
+        $node = (new TreeBuilder())->root('mysql');
+        $node->children()
+            ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
+            ->arrayNode('format')->children()
+            ->scalarNode('date')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('thread')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('type')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('message')->isRequired()->cannotBeEmpty()->end()
             ->end()->end()
             ->arrayNode('cast')->children()
             ->scalarNode('date')->end();

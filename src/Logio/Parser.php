@@ -52,10 +52,16 @@ class Parser implements LineParserInterface
                 $this->makeParserException($line, $pattern);
             }
             if (1 !== $result) {
+                $data[$key] = null;
                 continue;
             }
 
             if (isset($this->getParameters()['cast'][$key])) {
+                var_dump([
+                    'line' => $line,
+                    'pattern' => $pattern,
+                    'matches' => $matches
+                ]);
                 $data[$key] = $this->castData(
                     $this->getParameters()['cast'][$key],
                     $matches[1]
