@@ -10,21 +10,21 @@ class LogioTest extends \PHPUnit_Framework_TestCase
 {
     private $fixturesDir = __DIR__ . '/../fixtures';
     /**
-     * @var Logio
+     * @var Config
      */
-    private $logio;
+    private $config;
 
     protected function setUp()
     {
-        $config = Config::createFromYaml($this->fixturesDir . '/config.success.yml');
-        $this->logio = new Logio($config);
+        $this->config = Config::createFromYaml($this->fixturesDir . '/config.success.yml');
     }
 
     public function testConstructor()
     {
-        $this->assertNotEmpty($this->logio->getParsers());
+        $logio = new Logio($this->config);
+        $this->assertNotEmpty($logio->getParsers());
 
-        foreach ($this->logio->getParsers() as $parser) {
+        foreach ($logio->getParsers() as $parser) {
             $this->assertInstanceOf(Parser::class, $parser);
         }
     }
@@ -32,8 +32,10 @@ class LogioTest extends \PHPUnit_Framework_TestCase
 
     public function testParse()
     {
+        $logio = new Logio($this->config);
+
         /** @var Iterator $item */
-        foreach ($this->logio->run() as $item) {
+        foreach ($logio->runAll() as $item) {
             /**
              * @var string $key
              * @var array|null $data
@@ -44,9 +46,25 @@ class LogioTest extends \PHPUnit_Framework_TestCase
                     $this->assertInternalType('array', $data);
                     $this->assertNotEmpty($data);
                 }
-                //var_dump($key, $data);
-                //echo "\n";
             }
         }
+    }
+
+    public function testSeekParse()
+    {
+        $logio = new Logio($this->config);
+        $item = $logio->run('php_fpm');
+
+        $item->setSeek(7353);
+
+        $data = $item->current();
+
+        $this->assertEquals([
+            'date' => new \DateTime('18-Jul-2016 15:51:48'),
+            'type' => 'WARNING',
+            'pool' => 'www',
+            'message' => 'seems busy (you may need to increase pm.start_servers, or pm.min/max_spare_servers), spawning 8 children, there are 5 idle, and 14 total children',
+            'child' => null,
+        ], $data);
     }
 }
