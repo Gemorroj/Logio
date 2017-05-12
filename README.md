@@ -1,8 +1,8 @@
-# Logio log parser
+# Logio
 
 [![Build Status](https://secure.travis-ci.org/Gemorroj/Logio.png?branch=master)](https://travis-ci.org/Gemorroj/Logio)
 
-### Парсер error логов.
+### Log parser
 
 Из коробки поддерживаются:
  - apache
@@ -43,7 +43,9 @@ foreach ($parser as $data) {
 ```
 
 
-TODO: добавть в конфиги новый параметр который, говорил бы об добавлении данных в массив до того момента. пока не сработает регулярка.
+
+### TODO
+добавть в конфиги новый параметр который, говорил бы о добавлении данных в массив до того момента. пока не сработает регулярка.
 Например:
 ```yml
 mysql:
