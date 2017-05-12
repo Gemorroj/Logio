@@ -35,11 +35,38 @@ class Iterator extends LogIterator
 
 
     /**
+     * Seeks on a file pointer
+     *
      * @param int $seek
+     * @return $this
      */
     public function setSeek($seek)
     {
         $this->seek = $seek;
+        return $this;
+    }
+
+
+    /**
+     * Seeks on a file pointer
+     *
+     * @return int
+     */
+    public function getSeek()
+    {
+        return $this->seek;
+    }
+
+    /**
+     * Returns the current position of the file read/write pointer
+     *
+     * @return int
+     */
+    public function getTell()
+    {
+        $fileHandler = parent::getFileHandler();
+
+        return \ftell($fileHandler);
     }
 
     /**
