@@ -41,3 +41,28 @@ foreach ($parser as $data) {
      */
 }
 ```
+
+
+TODO: добавть в конфиги новый параметр который, говорил бы об добавлении данных в массив до того момента. пока не сработает регулярка.
+Например:
+```yml
+mysql:
+    path: 'Tests/fixtures/mysql.log'
+    format:
+        date: '/^([0-9A-Z\.\-:]+) /'
+        thread: '/^(?:[0-9A-Z\.\-:]+) ([0-9]+) \[/'
+        type: '/(?:[0-9]+) \[(.+)\] /'
+        message: '/ (?:[0-9]+ \[.+\] ){0,1}(.+)+/'
+    cast:
+        date: '\DateTime'
+    append:
+        message: '/todo/'
+```
+
+```txt
+2016-03-01T22:22:38.769531Z 0 [Note] InnoDB: Progress in MB:
+ 100 200
+2016-03-01T22:22:39.884951Z 0 [Note] InnoDB: Renaming log file ./ib_logfile101 to ./ib_logfile0
+```
+
+Должно получиться 2 элемента массива, " 100 200" должны присоедениться к message предыдущей строки.
