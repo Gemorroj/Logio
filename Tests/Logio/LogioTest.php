@@ -66,5 +66,7 @@ class LogioTest extends \PHPUnit_Framework_TestCase
             'message' => 'seems busy (you may need to increase pm.start_servers, or pm.min/max_spare_servers), spawning 8 children, there are 5 idle, and 14 total children',
             'child' => null,
         ], $data);
+
+        $this->assertEquals(7542, $item->getTell());
     }
 }
