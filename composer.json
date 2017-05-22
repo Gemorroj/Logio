@@ -3,7 +3,7 @@
     "description": "log parser",
     "keywords": ["php", "php-fpm", "mysql", "apache", "nginx", "log", "logger"],
     "type": "library",
-    "license": "LGPL 3.0",
+    "license": "LGPL-3.0",
     "authors": [
         {
             "name": "Gemorroj"
