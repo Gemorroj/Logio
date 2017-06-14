@@ -49,7 +49,7 @@ foreach ($parser as $data) {
 Например:
 ```yml
 mysql:
-    path: 'Tests/fixtures/mysql.log'
+    path: 'tests/fixtures/mysql.log'
     format:
         date: '/^([0-9A-Z\.\-:]+) /'
         thread: '/^(?:[0-9A-Z\.\-:]+) ([0-9]+) \[/'

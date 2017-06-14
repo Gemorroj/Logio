@@ -10,7 +10,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
     public function testConfigSuccess()
     {
         $config = Config::createFromYaml($this->fixturesDir . '/config.success.yml');
-        $this->assertEquals('Tests/fixtures/apache.log', $config->getParameters()['apache']['path']);
+        $this->assertEquals('tests/fixtures/apache.log', $config->getParameters()['apache']['path']);
     }
 
     /**

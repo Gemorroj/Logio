@@ -1,5 +1,5 @@
 apache:
-    path: 'Tests/fixtures/apache.log'
+    path: 'tests/fixtures/apache.log'
     format:
         date: '/^\[(.*?)\]/'
         type: '/\[(warn|error|debug|info|crit|emerg|notice|alert)\]/'
@@ -8,7 +8,7 @@ apache:
     cast:
         date: '\DateTime'
 nginx:
-    path: 'Tests/fixtures/nginx.log'
+    path: 'tests/fixtures/nginx.log'
     format:
         date: '/(\d{4}\/\d{2}\/\d{2}\s\d{2}:\d{2}:\d{2}) /'
         type: '/ \[([^]]*)\]/'
@@ -20,7 +20,7 @@ nginx:
     cast:
         date: '\DateTime'
 php_fpm:
-    path: 'Tests/fixtures/php-fpm.log'
+    path: 'tests/fixtures/php-fpm.log'
     format:
         date: '/^\[(.*?)\]/'
         type: '/\] (ALERT|ERROR|WARNING|NOTICE|DEBUG): /'
@@ -30,7 +30,7 @@ php_fpm:
     cast:
         date: '\DateTime'
 php:
-    path: 'Tests/fixtures/php.log'
+    path: 'tests/fixtures/php.log'
     format:
         date: '/^\[(.*?)\]/'
         type: '/\] (.+):  /'
@@ -40,7 +40,7 @@ php:
     cast:
         date: '\DateTime'
 mysql:
-    path: 'Tests/fixtures/mysql.log'
+    path: 'tests/fixtures/mysql.log'
     format:
         date: '/^([0-9A-Z\.\-:]+) /'
         thread: '/^(?:[0-9A-Z\.\-:]+) ([0-9]+) \[/'

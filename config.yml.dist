@@ -20,7 +20,7 @@ nginx:
     cast:
         date: '\DateTime'
 php_fpm:
-    path: 'Tests/fixtures/php-fpm.log'
+    path: 'tests/fixtures/php-fpm.log'
     format:
         date: '/^\[(.*?)\]/'
         type: '/\] (ALERT|ERROR|WARNING|NOTICE|DEBUG): /'
