@@ -19,12 +19,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Logio\\": "src/Logio"
+            "Logio\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests"
+            "Logio\\Tests\\": "tests/"
         }
     }
 }

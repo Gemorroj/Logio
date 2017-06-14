@@ -6,7 +6,7 @@ use Logio\Parser;
 
 class ParserTest extends \PHPUnit_Framework_TestCase
 {
-    private $fixturesDir = __DIR__ . '/../fixtures';
+    private $fixturesDir = __DIR__ . '/fixtures';
     /**
      * @var Config
      */
