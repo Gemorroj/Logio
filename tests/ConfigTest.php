@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Logio;
+namespace Logio\Tests;
 
 use Logio\Config;
 
