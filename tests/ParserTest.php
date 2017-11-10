@@ -3,8 +3,9 @@ namespace Logio\Tests;
 
 use Logio\Config;
 use Logio\Parser;
+use PHPUnit\Framework\TestCase;
 
-class ParserTest extends \PHPUnit_Framework_TestCase
+class ParserTest extends TestCase
 {
     private $fixturesDir = __DIR__ . '/fixtures';
     /**

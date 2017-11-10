@@ -2,8 +2,9 @@
 namespace Logio\Tests;
 
 use Logio\Config;
+use PHPUnit\Framework\TestCase;
 
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends TestCase
 {
     private $fixturesDir = __DIR__ . '/fixtures';
 

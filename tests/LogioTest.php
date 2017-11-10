@@ -5,8 +5,9 @@ use Logio\Config;
 use Logio\Iterator;
 use Logio\Logio;
 use Logio\Parser;
+use PHPUnit\Framework\TestCase;
 
-class LogioTest extends \PHPUnit_Framework_TestCase
+class LogioTest extends TestCase
 {
     private $fixturesDir = __DIR__ . '/fixtures';
     /**
