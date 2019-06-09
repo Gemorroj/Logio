@@ -105,7 +105,7 @@ class Parser implements LineParserInterface
     protected function castData($className, $value)
     {
         if (!\class_exists($className)) {
-            throw new \InvalidArgumentException(sprintf('Class "%s" not found', $className));
+            throw new \InvalidArgumentException(\sprintf('Class "%s" not found', $className));
         }
         return new $className($value);
     }

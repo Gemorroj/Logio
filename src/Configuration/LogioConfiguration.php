@@ -1,8 +1,8 @@
 <?php
 namespace Logio\Configuration;
 
-use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class LogioConfiguration implements ConfigurationInterface
 {

@@ -32,8 +32,8 @@ class Logio
      * Iterator object
      *
      * @param string $name
-     * @return Iterator
      * @throws \InvalidArgumentException
+     * @return Iterator
      */
     public function run($name)
     {
