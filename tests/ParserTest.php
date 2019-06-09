@@ -14,12 +14,12 @@ class ParserTest extends TestCase
      */
     private $config;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->config = Config::createFromYaml($this->fixturesDir.'/config.success.yml');
     }
 
-    public function testParseLineApache()
+    public function testParseLineApache(): void
     {
         $parser = new Parser('test', $this->config->getParameters()['apache']);
 
@@ -32,7 +32,7 @@ class ParserTest extends TestCase
         ], $data);
     }
 
-    public function testParseLineNginx()
+    public function testParseLineNginx(): void
     {
         $parser = new Parser('test', $this->config->getParameters()['nginx']);
 
@@ -48,7 +48,7 @@ class ParserTest extends TestCase
         ], $data);
     }
 
-    public function testParseLinePhpFpm()
+    public function testParseLinePhpFpm(): void
     {
         $parser = new Parser('test', $this->config->getParameters()['php_fpm']);
 
@@ -62,7 +62,7 @@ class ParserTest extends TestCase
         ], $data);
     }
 
-    public function testParseLinePhp()
+    public function testParseLinePhp(): void
     {
         $parser = new Parser('test', $this->config->getParameters()['php']);
 
@@ -85,7 +85,7 @@ class ParserTest extends TestCase
         ], $data);
     }
 
-    public function testParseLineMysqlFpm()
+    public function testParseLineMysqlFpm(): void
     {
         $parser = new Parser('test', $this->config->getParameters()['mysql']);
 

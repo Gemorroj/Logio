@@ -8,43 +8,23 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class LogioConfiguration implements ConfigurationInterface
 {
-    private $data;
-
-    public function __construct(array $data)
-    {
-        $this->data = $data;
-    }
-
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('logio');
 
         $rootNode = $treeBuilder->getRootNode();
+        $rootNode->isRequired();
 
-        if (isset($this->data['apache'])) {
-            $rootNode->append($this->getApacheBuilder());
-        }
-
-        if (isset($this->data['nginx'])) {
-            $rootNode->append($this->getNginxBuilder());
-        }
-
-        if (isset($this->data['php_fpm'])) {
-            $rootNode->append($this->getPhpFpmBuilder());
-        }
-
-        if (isset($this->data['php'])) {
-            $rootNode->append($this->getPhpBuilder());
-        }
-
-        if (isset($this->data['mysql'])) {
-            $rootNode->append($this->getMysqlBuilder());
-        }
+        $rootNode->append($this->getApacheNodeDefinition());
+        $rootNode->append($this->getNginxNodeDefinition());
+        $rootNode->append($this->getPhpFpmNodeDefinition());
+        $rootNode->append($this->getPhpNodeDefinition());
+        $rootNode->append($this->getMysqlNodeDefinition());
 
         return $treeBuilder;
     }
 
-    protected function getApacheBuilder(): NodeDefinition
+    protected function getApacheNodeDefinition(): NodeDefinition
     {
         $node = (new TreeBuilder('apache'))->getRootNode();
         $node->children()
@@ -61,7 +41,7 @@ class LogioConfiguration implements ConfigurationInterface
         return $node;
     }
 
-    protected function getNginxBuilder(): NodeDefinition
+    protected function getNginxNodeDefinition(): NodeDefinition
     {
         $node = (new TreeBuilder('nginx'))->getRootNode();
         $node->children()
@@ -81,7 +61,7 @@ class LogioConfiguration implements ConfigurationInterface
         return $node;
     }
 
-    protected function getPhpFpmBuilder(): NodeDefinition
+    protected function getPhpFpmNodeDefinition(): NodeDefinition
     {
         $node = (new TreeBuilder('php_fpm'))->getRootNode();
         $node->children()
@@ -99,7 +79,7 @@ class LogioConfiguration implements ConfigurationInterface
         return $node;
     }
 
-    protected function getPhpBuilder(): NodeDefinition
+    protected function getPhpNodeDefinition(): NodeDefinition
     {
         $node = (new TreeBuilder('php'))->getRootNode();
         $node->children()
@@ -117,7 +97,7 @@ class LogioConfiguration implements ConfigurationInterface
         return $node;
     }
 
-    protected function getMysqlBuilder(): NodeDefinition
+    protected function getMysqlNodeDefinition(): NodeDefinition
     {
         $node = (new TreeBuilder('mysql'))->getRootNode();
         $node->children()

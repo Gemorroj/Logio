@@ -4,22 +4,21 @@ namespace Logio\Tests;
 
 use Logio\Config;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 class ConfigTest extends TestCase
 {
     private $fixturesDir = __DIR__.'/fixtures';
 
-    public function testConfigSuccess()
+    public function testConfigSuccess(): void
     {
         $config = Config::createFromYaml($this->fixturesDir.'/config.success.yml');
         $this->assertEquals('tests/fixtures/apache.log', $config->getParameters()['apache']['path']);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
-     */
-    public function testConfigError()
+    public function testConfigError(): void
     {
+        $this->expectException(InvalidConfigurationException::class);
         Config::createFromYaml($this->fixturesDir.'/config.error.yml');
     }
 }

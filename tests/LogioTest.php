@@ -16,12 +16,12 @@ class LogioTest extends TestCase
      */
     private $config;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->config = Config::createFromYaml($this->fixturesDir.'/config.success.yml');
     }
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $logio = new Logio($this->config);
         $this->assertNotEmpty($logio->getParsers());
@@ -31,7 +31,7 @@ class LogioTest extends TestCase
         }
     }
 
-    public function testParse()
+    public function testParse(): void
     {
         $logio = new Logio($this->config);
 
@@ -51,7 +51,7 @@ class LogioTest extends TestCase
         }
     }
 
-    public function testSeekParse()
+    public function testSeekParse(): void
     {
         $logio = new Logio($this->config);
         $item = $logio->run('php_fpm');

@@ -8,13 +8,13 @@ use MVar\LogParser\LineParserInterface;
 class Parser implements LineParserInterface
 {
     protected $name;
-    protected $parameters = [];
+    protected $parameters;
 
     /**
      * @param string $name
      * @param array  $parameters
      */
-    public function __construct($name, array $parameters)
+    public function __construct(string $name, array $parameters)
     {
         $this->name = $name;
         $this->parameters = $parameters;
@@ -23,7 +23,7 @@ class Parser implements LineParserInterface
     /**
      * @return array
      */
-    public function getParameters()
+    public function getParameters(): array
     {
         return $this->parameters;
     }
@@ -31,7 +31,7 @@ class Parser implements LineParserInterface
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -39,9 +39,9 @@ class Parser implements LineParserInterface
     /**
      * @param string $line
      *
-     * @return array
+     * @return array|null
      */
-    public function parseLine($line)
+    public function parseLine($line): ?array
     {
         $data = [];
 
@@ -75,7 +75,7 @@ class Parser implements LineParserInterface
      *
      * @throws ParserException
      */
-    protected function makeParserException($line, $pattern)
+    protected function makeParserException(string $line, string $pattern): void
     {
         $pregErrorCode = \preg_last_error();
         if (PREG_NO_ERROR !== $pregErrorCode) {
@@ -104,7 +104,7 @@ class Parser implements LineParserInterface
      *
      * @return object
      */
-    protected function castData($className, $value)
+    protected function castData(string $className, string $value): object
     {
         if (!\class_exists($className)) {
             throw new \InvalidArgumentException(\sprintf('Class "%s" not found', $className));

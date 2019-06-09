@@ -15,7 +15,7 @@ class Config
     private function __construct(array $data)
     {
         $this->parameters = (new Processor())->processConfiguration(
-            new Configuration\LogioConfiguration($data),
+            new Configuration\LogioConfiguration(),
             [$data]
         );
     }
@@ -27,7 +27,7 @@ class Config
      */
     public static function createFromYaml(string $configPath): self
     {
-        return new static(Yaml::parse(\file_get_contents($configPath)));
+        return new static(Yaml::parseFile($configPath));
     }
 
     /**
