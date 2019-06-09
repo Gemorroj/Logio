@@ -1,4 +1,5 @@
 <?php
+
 namespace Logio\Tests;
 
 use Logio\Config;
@@ -7,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class ParserTest extends TestCase
 {
-    private $fixturesDir = __DIR__ . '/fixtures';
+    private $fixturesDir = __DIR__.'/fixtures';
     /**
      * @var Config
      */
@@ -15,9 +16,8 @@ class ParserTest extends TestCase
 
     protected function setUp()
     {
-        $this->config = Config::createFromYaml($this->fixturesDir . '/config.success.yml');
+        $this->config = Config::createFromYaml($this->fixturesDir.'/config.success.yml');
     }
-
 
     public function testParseLineApache()
     {

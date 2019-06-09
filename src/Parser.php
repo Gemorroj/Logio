@@ -12,7 +12,7 @@ class Parser implements LineParserInterface
 
     /**
      * @param string $name
-     * @param array $parameters
+     * @param array  $parameters
      */
     public function __construct($name, array $parameters)
     {
@@ -46,7 +46,7 @@ class Parser implements LineParserInterface
         $data = [];
 
         foreach ($this->getParameters()['format'] as $key => $pattern) {
-            $result = @\preg_match($pattern . 'S', $line, $matches);
+            $result = @\preg_match($pattern.'S', $line, $matches);
 
             if (false === $result) {
                 $this->makeParserException($line, $pattern);
@@ -72,6 +72,7 @@ class Parser implements LineParserInterface
     /**
      * @param string $line
      * @param string $pattern
+     *
      * @throws ParserException
      */
     protected function makeParserException($line, $pattern)
@@ -100,6 +101,7 @@ class Parser implements LineParserInterface
     /**
      * @param string $className
      * @param string $value
+     *
      * @return object
      */
     protected function castData($className, $value)
@@ -107,6 +109,7 @@ class Parser implements LineParserInterface
         if (!\class_exists($className)) {
             throw new \InvalidArgumentException(\sprintf('Class "%s" not found', $className));
         }
+
         return new $className($value);
     }
 }

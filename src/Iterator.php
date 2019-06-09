@@ -17,56 +17,60 @@ class Iterator extends LogIterator
 
     /**
      * @param string $name
+     *
      * @return $this
      */
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-
     /**
-     * Seeks on a file pointer
+     * Seeks on a file pointer.
      *
      * @param int $seek
+     *
      * @return $this
      */
-    public function setSeek($seek)
+    public function setSeek(int $seek): self
     {
         $this->seek = $seek;
+
         return $this;
     }
 
-
     /**
-     * Seeks on a file pointer
+     * Seeks on a file pointer.
      *
      * @return int
      */
-    public function getSeek()
+    public function getSeek(): int
     {
         return $this->seek;
     }
 
     /**
-     * Returns the current position of the file read/write pointer
+     * Returns the current position of the file read/write pointer.
      *
-     * @return int
+     * @return int|null
      */
-    public function getTell()
+    public function getTell(): ?int
     {
         $fileHandler = parent::getFileHandler();
 
-        return \ftell($fileHandler);
+        $data = \ftell($fileHandler);
+
+        return false === $data ? null : $data;
     }
 
     /**

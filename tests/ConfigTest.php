@@ -1,4 +1,5 @@
 <?php
+
 namespace Logio\Tests;
 
 use Logio\Config;
@@ -6,11 +7,11 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
 {
-    private $fixturesDir = __DIR__ . '/fixtures';
+    private $fixturesDir = __DIR__.'/fixtures';
 
     public function testConfigSuccess()
     {
-        $config = Config::createFromYaml($this->fixturesDir . '/config.success.yml');
+        $config = Config::createFromYaml($this->fixturesDir.'/config.success.yml');
         $this->assertEquals('tests/fixtures/apache.log', $config->getParameters()['apache']['path']);
     }
 
@@ -19,6 +20,6 @@ class ConfigTest extends TestCase
      */
     public function testConfigError()
     {
-        Config::createFromYaml($this->fixturesDir . '/config.error.yml');
+        Config::createFromYaml($this->fixturesDir.'/config.error.yml');
     }
 }

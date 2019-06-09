@@ -1,6 +1,8 @@
 <?php
+
 namespace Logio\Configuration;
 
+use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -13,11 +15,11 @@ class LogioConfiguration implements ConfigurationInterface
         $this->data = $data;
     }
 
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
+        $treeBuilder = new TreeBuilder('logio');
 
-        $rootNode = $treeBuilder->root('logio');
+        $rootNode = $treeBuilder->getRootNode();
 
         if (isset($this->data['apache'])) {
             $rootNode->append($this->getApacheBuilder());
@@ -42,9 +44,9 @@ class LogioConfiguration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    protected function getApacheBuilder()
+    protected function getApacheBuilder(): NodeDefinition
     {
-        $node = (new TreeBuilder())->root('apache');
+        $node = (new TreeBuilder('apache'))->getRootNode();
         $node->children()
             ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
             ->arrayNode('format')->children()
@@ -55,12 +57,13 @@ class LogioConfiguration implements ConfigurationInterface
             ->end()->end()
             ->arrayNode('cast')->children()
                 ->scalarNode('date')->end();
+
         return $node;
     }
 
-    protected function getNginxBuilder()
+    protected function getNginxBuilder(): NodeDefinition
     {
-        $node = (new TreeBuilder())->root('nginx');
+        $node = (new TreeBuilder('nginx'))->getRootNode();
         $node->children()
             ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
             ->arrayNode('format')->children()
@@ -78,9 +81,9 @@ class LogioConfiguration implements ConfigurationInterface
         return $node;
     }
 
-    protected function getPhpFpmBuilder()
+    protected function getPhpFpmBuilder(): NodeDefinition
     {
-        $node = (new TreeBuilder())->root('php_fpm');
+        $node = (new TreeBuilder('php_fpm'))->getRootNode();
         $node->children()
             ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
             ->arrayNode('format')->children()
@@ -92,12 +95,13 @@ class LogioConfiguration implements ConfigurationInterface
             ->end()->end()
             ->arrayNode('cast')->children()
             ->scalarNode('date')->end();
+
         return $node;
     }
 
-    protected function getPhpBuilder()
+    protected function getPhpBuilder(): NodeDefinition
     {
-        $node = (new TreeBuilder())->root('php');
+        $node = (new TreeBuilder('php'))->getRootNode();
         $node->children()
             ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
             ->arrayNode('format')->children()
@@ -109,13 +113,13 @@ class LogioConfiguration implements ConfigurationInterface
             ->end()->end()
             ->arrayNode('cast')->children()
             ->scalarNode('date')->end();
+
         return $node;
     }
 
-
-    protected function getMysqlBuilder()
+    protected function getMysqlBuilder(): NodeDefinition
     {
-        $node = (new TreeBuilder())->root('mysql');
+        $node = (new TreeBuilder('mysql'))->getRootNode();
         $node->children()
             ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
             ->arrayNode('format')->children()
@@ -126,6 +130,7 @@ class LogioConfiguration implements ConfigurationInterface
             ->end()->end()
             ->arrayNode('cast')->children()
             ->scalarNode('date')->end();
+
         return $node;
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Logio;
 
-
 class Logio
 {
     /**
@@ -23,19 +22,21 @@ class Logio
     /**
      * @return Parser[]
      */
-    public function getParsers()
+    public function getParsers(): array
     {
         return $this->parsers;
     }
 
     /**
-     * Iterator object
+     * Iterator object.
      *
      * @param string $name
+     *
      * @throws \InvalidArgumentException
+     *
      * @return Iterator
      */
-    public function run($name)
+    public function run(string $name): Iterator
     {
         foreach ($this->getParsers() as $parser) {
             if ($parser->getName() === $name) {
@@ -48,11 +49,11 @@ class Logio
     }
 
     /**
-     * Iterator objects
+     * Iterator objects.
      *
      * @return \Generator
      */
-    public function runAll()
+    public function runAll(): \Generator
     {
         foreach ($this->getParsers() as $parser) {
             yield (new Iterator($parser->getParameters()['path'], $parser))

@@ -1,4 +1,5 @@
 <?php
+
 namespace Logio\Tests;
 
 use Logio\Config;
@@ -9,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class LogioTest extends TestCase
 {
-    private $fixturesDir = __DIR__ . '/fixtures';
+    private $fixturesDir = __DIR__.'/fixtures';
     /**
      * @var Config
      */
@@ -17,7 +18,7 @@ class LogioTest extends TestCase
 
     protected function setUp()
     {
-        $this->config = Config::createFromYaml($this->fixturesDir . '/config.success.yml');
+        $this->config = Config::createFromYaml($this->fixturesDir.'/config.success.yml');
     }
 
     public function testConstructor()
@@ -30,7 +31,6 @@ class LogioTest extends TestCase
         }
     }
 
-
     public function testParse()
     {
         $logio = new Logio($this->config);
@@ -38,13 +38,13 @@ class LogioTest extends TestCase
         /** @var Iterator $item */
         foreach ($logio->runAll() as $item) {
             /**
-             * @var string $key
+             * @var string
              * @var array|null $data
              */
             foreach ($item as $key => $data) {
-                $this->assertInternalType('string', $key);
+                $this->assertIsString($key);
                 if (null !== $data) {
-                    $this->assertInternalType('array', $data);
+                    $this->assertIsArray($data);
                     $this->assertNotEmpty($data);
                 }
             }

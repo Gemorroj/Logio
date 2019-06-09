@@ -1,6 +1,6 @@
 <?php
-namespace Logio\Exception;
 
+namespace Logio\Exception;
 
 class ParserException extends \Exception
 {
@@ -10,36 +10,40 @@ class ParserException extends \Exception
     /**
      * @return string|null
      */
-    public function getErrorLogLine()
+    public function getErrorLogLine(): ?string
     {
         return $this->errorLogLine;
     }
 
     /**
      * @param string $errorLogLine
+     *
      * @return $this
      */
-    public function setErrorLogLine($errorLogLine)
+    public function setErrorLogLine(string $errorLogLine): self
     {
         $this->errorLogLine = $errorLogLine;
+
         return $this;
     }
 
     /**
      * @return string|null
      */
-    public function getPattern()
+    public function getPattern(): ?string
     {
         return $this->pattern;
     }
 
     /**
      * @param string $pattern
+     *
      * @return $this
      */
-    public function setPattern($pattern)
+    public function setPattern(string $pattern): self
     {
         $this->pattern = $pattern;
+
         return $this;
     }
 }
