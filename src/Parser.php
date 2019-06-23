@@ -37,9 +37,7 @@ class Parser implements LineParserInterface
     }
 
     /**
-     * @param string $line
-     *
-     * @return array|null
+     * {@inheritdoc}
      */
     public function parseLine($line): ?array
     {
