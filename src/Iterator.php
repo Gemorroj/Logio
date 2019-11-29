@@ -16,8 +16,6 @@ class Iterator extends LogIterator
     private $name;
 
     /**
-     * @param string $name
-     *
      * @return $this
      */
     public function setName(string $name): self
@@ -27,9 +25,6 @@ class Iterator extends LogIterator
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -37,8 +32,6 @@ class Iterator extends LogIterator
 
     /**
      * Seeks on a file pointer.
-     *
-     * @param int $seek
      *
      * @return $this
      */
@@ -51,8 +44,6 @@ class Iterator extends LogIterator
 
     /**
      * Seeks on a file pointer.
-     *
-     * @return int
      */
     public function getSeek(): int
     {
@@ -61,8 +52,6 @@ class Iterator extends LogIterator
 
     /**
      * Returns the current position of the file read/write pointer.
-     *
-     * @return int|null
      */
     public function getTell(): ?int
     {

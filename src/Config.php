@@ -9,9 +9,6 @@ class Config
 {
     private $parameters;
 
-    /**
-     * @param array $data
-     */
     private function __construct(array $data)
     {
         $this->parameters = (new Processor())->processConfiguration(
@@ -21,8 +18,6 @@ class Config
     }
 
     /**
-     * @param string $configPath
-     *
      * @return static
      */
     public static function createFromYaml(string $configPath): self
@@ -30,9 +25,6 @@ class Config
         return new static(Yaml::parseFile($configPath));
     }
 
-    /**
-     * @return array
-     */
     public function getParameters(): array
     {
         return $this->parameters;

@@ -10,27 +10,17 @@ class Parser implements LineParserInterface
     protected $name;
     protected $parameters;
 
-    /**
-     * @param string $name
-     * @param array  $parameters
-     */
     public function __construct(string $name, array $parameters)
     {
         $this->name = $name;
         $this->parameters = $parameters;
     }
 
-    /**
-     * @return array
-     */
     public function getParameters(): array
     {
         return $this->parameters;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -68,9 +58,6 @@ class Parser implements LineParserInterface
     }
 
     /**
-     * @param string $line
-     * @param string $pattern
-     *
      * @throws ParserException
      */
     protected function makeParserException(string $line, string $pattern): void
@@ -96,12 +83,6 @@ class Parser implements LineParserInterface
         throw $exception;
     }
 
-    /**
-     * @param string $className
-     * @param string $value
-     *
-     * @return object
-     */
     protected function castData(string $className, string $value): object
     {
         if (!\class_exists($className)) {

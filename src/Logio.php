@@ -9,9 +9,6 @@ class Logio
      */
     private $parsers = [];
 
-    /**
-     * @param Config $config
-     */
     public function __construct(Config $config)
     {
         foreach ($config->getParameters() as $name => $parameters) {
@@ -30,11 +27,7 @@ class Logio
     /**
      * Iterator object.
      *
-     * @param string $name
-     *
      * @throws \InvalidArgumentException
-     *
-     * @return Iterator
      */
     public function run(string $name): Iterator
     {
@@ -50,8 +43,6 @@ class Logio
 
     /**
      * Iterator objects.
-     *
-     * @return \Generator
      */
     public function runAll(): \Generator
     {
