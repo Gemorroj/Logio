@@ -1,6 +1,6 @@
 # Logio
 
-[![Build Status](https://secure.travis-ci.org/Gemorroj/Logio.png?branch=master)](https://travis-ci.org/Gemorroj/Logio)
+[![Continuous Integration](https://github.com/Gemorroj/Logio/workflows/Continuous%20Integration/badge.svg?branch=master)](https://github.com/Gemorroj/Logio/actions?query=workflow%3A%22Continuous+Integration%22)
 
 ### Log parser
 
@@ -52,7 +52,7 @@ foreach ($parser as $data) {
 
 
 ### TODO
-добавть в конфиги новый параметр который, говорил бы о добавлении данных в массив до того момента. пока не сработает регулярка.
+добавить в конфиги новый параметр который, говорил бы о добавлении данных в массив до того момента. пока не сработает регулярка.
 Например:
 ```yml
 mysql:
@@ -74,4 +74,4 @@ mysql:
 2016-03-01T22:22:39.884951Z 0 [Note] InnoDB: Renaming log file ./ib_logfile101 to ./ib_logfile0
 ```
 
-Должно получиться 2 элемента массива, " 100 200" должны присоедениться к message предыдущей строки.
+Должно получиться 2 элемента массива, " 100 200" должны присоединиться к message предыдущей строки.
