@@ -24,10 +24,10 @@ class LogioTest extends TestCase
     public function testConstructor(): void
     {
         $logio = new Logio($this->config);
-        $this->assertNotEmpty($logio->getParsers());
+        self::assertNotEmpty($logio->getParsers());
 
         foreach ($logio->getParsers() as $parser) {
-            $this->assertInstanceOf(Parser::class, $parser);
+            self::assertInstanceOf(Parser::class, $parser);
         }
     }
 
@@ -42,10 +42,10 @@ class LogioTest extends TestCase
              * @var array|null $data
              */
             foreach ($item as $key => $data) {
-                $this->assertIsString($key);
+                self::assertIsString($key);
                 if (null !== $data) {
-                    $this->assertIsArray($data);
-                    $this->assertNotEmpty($data);
+                    self::assertIsArray($data);
+                    self::assertNotEmpty($data);
                 }
             }
         }
@@ -60,7 +60,7 @@ class LogioTest extends TestCase
 
         $data = $item->current();
 
-        $this->assertEquals([
+        self::assertEquals([
             'date' => new \DateTime('18-Jul-2016 15:51:48'),
             'type' => 'WARNING',
             'pool' => 'www',
@@ -68,6 +68,6 @@ class LogioTest extends TestCase
             'child' => null,
         ], $data);
 
-        $this->assertEquals(7542, $item->getTell());
+        self::assertEquals(7542, $item->getTell());
     }
 }

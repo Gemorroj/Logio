@@ -13,7 +13,7 @@ class ConfigTest extends TestCase
     public function testConfigSuccess(): void
     {
         $config = Config::createFromYaml($this->fixturesDir.'/config.success.yml');
-        $this->assertEquals('tests/fixtures/apache.log', $config->getParameters()['apache']['path']);
+        self::assertEquals('tests/fixtures/apache.log', $config->getParameters()['apache']['path']);
     }
 
     public function testConfigError(): void

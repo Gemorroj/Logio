@@ -2,10 +2,34 @@
 
 namespace Logio;
 
-use MVar\LogParser\LogIterator;
+use Logio\Exception\ParserException;
 
-class Iterator extends LogIterator
+class Iterator implements \Iterator
 {
+    /**
+     * @var Parser
+     */
+    private $parser;
+
+    /**
+     * @var string
+     */
+    private $logFile;
+
+    /**
+     * @var resource
+     */
+    private $fileHandler;
+
+    /**
+     * @var string|null
+     */
+    private $currentLine;
+
+    /**
+     * @var bool
+     */
+    private $skipEmptyLines;
     /**
      * @var int
      */
@@ -15,9 +39,113 @@ class Iterator extends LogIterator
      */
     private $name;
 
+    public function __construct(string $logFile, Parser $parser, bool $skipEmptyLines = true)
+    {
+        $this->logFile = $logFile;
+        $this->parser = $parser;
+        $this->skipEmptyLines = $skipEmptyLines;
+    }
+
     /**
-     * @return $this
+     * Destructor.
      */
+    public function __destruct()
+    {
+        @\fclose($this->fileHandler);
+    }
+
+    /**
+     * Returns file handler.
+     *
+     * @throws ParserException
+     *
+     * @return resource
+     */
+    protected function getFileHandler(bool $seek = true)
+    {
+        if (null === $this->fileHandler) {
+            $fileHandler = @\fopen($this->logFile, 'r');
+
+            if (false === $fileHandler) {
+                throw new ParserException('Can not open log file.');
+            }
+
+            $this->fileHandler = $fileHandler;
+        }
+
+        if ($seek && null !== $this->seek) {
+            \fseek($this->fileHandler, $this->seek);
+        }
+
+        return $this->fileHandler;
+    }
+
+    /**
+     * Reads single line from file.
+     *
+     * @throws ParserException
+     */
+    protected function readLine(): void
+    {
+        $buffer = '';
+
+        while ('' === $buffer) {
+            if (($buffer = \fgets($this->getFileHandler())) === false) {
+                $this->currentLine = null;
+
+                return;
+            }
+            $buffer = \trim($buffer, "\n\r\0");
+
+            if (!$this->skipEmptyLines) {
+                break;
+            }
+        }
+
+        $this->currentLine = $buffer;
+    }
+
+    /**
+     * Returns parsed current line.
+     */
+    public function current(): ?array
+    {
+        if (null === $this->currentLine) {
+            $this->readLine();
+        }
+
+        if (null === $this->currentLine) {
+            return null;
+        }
+
+        return $this->parser->parseLine($this->currentLine);
+    }
+
+    public function next(): void
+    {
+        $this->readLine();
+    }
+
+    /**
+     * Returns current line.
+     *
+     * @return string|null
+     */
+    public function key()
+    {
+        return $this->currentLine;
+    }
+
+    public function valid(): bool
+    {
+        return !\feof($this->getFileHandler()) || $this->currentLine;
+    }
+
+    public function rewind(): void
+    {
+        \rewind($this->getFileHandler());
+    }
+
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -32,8 +160,6 @@ class Iterator extends LogIterator
 
     /**
      * Seeks on a file pointer.
-     *
-     * @return $this
      */
     public function setSeek(int $seek): self
     {
@@ -55,24 +181,10 @@ class Iterator extends LogIterator
      */
     public function getTell(): ?int
     {
-        $fileHandler = parent::getFileHandler();
+        $fileHandler = $this->getFileHandler(false);
 
         $data = \ftell($fileHandler);
 
         return false === $data ? null : $data;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getFileHandler()
-    {
-        $fileHandler = parent::getFileHandler();
-
-        if (null !== $this->seek) {
-            \fseek($fileHandler, $this->seek);
-        }
-
-        return $fileHandler;
     }
 }

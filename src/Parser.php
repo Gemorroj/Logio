@@ -3,9 +3,8 @@
 namespace Logio;
 
 use Logio\Exception\ParserException;
-use MVar\LogParser\LineParserInterface;
 
-class Parser implements LineParserInterface
+class Parser
 {
     protected $name;
     protected $parameters;
@@ -27,9 +26,9 @@ class Parser implements LineParserInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Parses single log line.
      */
-    public function parseLine($line): ?array
+    public function parseLine(string $line): ?array
     {
         $data = [];
 
@@ -63,7 +62,7 @@ class Parser implements LineParserInterface
     protected function makeParserException(string $line, string $pattern): void
     {
         $pregErrorCode = \preg_last_error();
-        if (PREG_NO_ERROR !== $pregErrorCode) {
+        if (\PREG_NO_ERROR !== $pregErrorCode) {
             $exception = new ParserException(\array_flip(\get_defined_constants(true)['pcre'])[$pregErrorCode]);
             $exception->setErrorLogLine($line);
             $exception->setPattern($pattern);
