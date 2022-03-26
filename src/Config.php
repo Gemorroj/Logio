@@ -7,7 +7,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class Config
 {
-    private $parameters;
+    private array $parameters;
 
     private function __construct(array $data)
     {
@@ -17,10 +17,7 @@ class Config
         );
     }
 
-    /**
-     * @return static
-     */
-    public static function createFromYaml(string $configPath): self
+    public static function createFromYaml(string $configPath): static
     {
         return new static(Yaml::parseFile($configPath));
     }

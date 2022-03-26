@@ -6,38 +6,22 @@ use Logio\Exception\ParserException;
 
 class Iterator implements \Iterator
 {
-    /**
-     * @var Parser
-     */
-    private $parser;
+    private Parser $parser;
 
-    /**
-     * @var string
-     */
-    private $logFile;
+    private string $logFile;
 
     /**
      * @var resource
      */
     private $fileHandler;
 
-    /**
-     * @var string|null
-     */
-    private $currentLine;
+    private ?string $currentLine = null;
 
-    /**
-     * @var bool
-     */
-    private $skipEmptyLines;
-    /**
-     * @var int
-     */
-    private $seek;
-    /**
-     * @var string
-     */
-    private $name;
+    private bool $skipEmptyLines;
+
+    private ?int $seek = null;
+
+    private string $name = '';
 
     public function __construct(string $logFile, Parser $parser, bool $skipEmptyLines = true)
     {
@@ -46,9 +30,6 @@ class Iterator implements \Iterator
         $this->skipEmptyLines = $skipEmptyLines;
     }
 
-    /**
-     * Destructor.
-     */
     public function __destruct()
     {
         @\fclose($this->fileHandler);

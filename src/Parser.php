@@ -6,8 +6,8 @@ use Logio\Exception\ParserException;
 
 class Parser
 {
-    protected $name;
-    protected $parameters;
+    protected string $name;
+    protected array $parameters;
 
     public function __construct(string $name, array $parameters)
     {

@@ -10,11 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 class LogioTest extends TestCase
 {
-    private $fixturesDir = __DIR__.'/fixtures';
-    /**
-     * @var Config
-     */
-    private $config;
+    private string $fixturesDir = __DIR__.'/fixtures';
+    private Config $config;
 
     protected function setUp(): void
     {

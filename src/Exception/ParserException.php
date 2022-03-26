@@ -4,8 +4,8 @@ namespace Logio\Exception;
 
 class ParserException extends \Exception
 {
-    private $errorLogLine;
-    private $pattern;
+    private ?string $errorLogLine = null;
+    private ?string $pattern = null;
 
     public function getErrorLogLine(): ?string
     {

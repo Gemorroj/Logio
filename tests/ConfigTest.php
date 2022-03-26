@@ -8,7 +8,7 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 class ConfigTest extends TestCase
 {
-    private $fixturesDir = __DIR__.'/fixtures';
+    private string $fixturesDir = __DIR__.'/fixtures';
 
     public function testConfigSuccess(): void
     {
