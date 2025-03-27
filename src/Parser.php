@@ -4,15 +4,10 @@ namespace Logio;
 
 use Logio\Exception\ParserException;
 
-class Parser
+final readonly class Parser
 {
-    protected string $name;
-    protected array $parameters;
-
-    public function __construct(string $name, array $parameters)
+    public function __construct(private string $name, private array $parameters)
     {
-        $this->name = $name;
-        $this->parameters = $parameters;
     }
 
     public function getParameters(): array

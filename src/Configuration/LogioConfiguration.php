@@ -6,7 +6,7 @@ use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-class LogioConfiguration implements ConfigurationInterface
+final readonly class LogioConfiguration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {

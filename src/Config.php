@@ -5,7 +5,7 @@ namespace Logio;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Yaml\Yaml;
 
-class Config
+final readonly class Config
 {
     private array $parameters;
 
@@ -17,9 +17,9 @@ class Config
         );
     }
 
-    public static function createFromYaml(string $configPath): static
+    public static function createFromYaml(string $configPath): self
     {
-        return new static(Yaml::parseFile($configPath));
+        return new self(Yaml::parseFile($configPath));
     }
 
     public function getParameters(): array

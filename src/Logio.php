@@ -2,7 +2,7 @@
 
 namespace Logio;
 
-class Logio
+final class Logio
 {
     /**
      * @var Parser[]

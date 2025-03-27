@@ -8,7 +8,7 @@ use Logio\Logio;
 use Logio\Parser;
 use PHPUnit\Framework\TestCase;
 
-class LogioTest extends TestCase
+final class LogioTest extends TestCase
 {
     private string $fixturesDir = __DIR__.'/fixtures';
     private Config $config;

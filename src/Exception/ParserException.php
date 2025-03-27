@@ -2,7 +2,7 @@
 
 namespace Logio\Exception;
 
-class ParserException extends \Exception
+final class ParserException extends \Exception
 {
     private ?string $errorLogLine = null;
     private ?string $pattern = null;

@@ -6,7 +6,7 @@ use Logio\Config;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
-class ConfigTest extends TestCase
+final class ConfigTest extends TestCase
 {
     private string $fixturesDir = __DIR__.'/fixtures';
 

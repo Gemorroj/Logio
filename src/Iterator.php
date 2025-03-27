@@ -4,30 +4,21 @@ namespace Logio;
 
 use Logio\Exception\ParserException;
 
-class Iterator implements \Iterator
+final class Iterator implements \Iterator
 {
-    private Parser $parser;
-
-    private string $logFile;
-
     /**
      * @var resource
      */
     private $fileHandler;
-
     private ?string $currentLine = null;
-
-    private bool $skipEmptyLines;
-
     private ?int $seek = null;
-
     private string $name = '';
 
-    public function __construct(string $logFile, Parser $parser, bool $skipEmptyLines = true)
-    {
-        $this->logFile = $logFile;
-        $this->parser = $parser;
-        $this->skipEmptyLines = $skipEmptyLines;
+    public function __construct(
+        private readonly string $logFile,
+        private readonly Parser $parser,
+        private readonly bool $skipEmptyLines = true,
+    ) {
     }
 
     public function __destruct()
