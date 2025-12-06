@@ -26,7 +26,7 @@ final readonly class LogioConfiguration implements ConfigurationInterface
 
     protected function getApacheNodeDefinition(): NodeDefinition
     {
-        $node = (new TreeBuilder('apache'))->getRootNode();
+        $node = new TreeBuilder('apache')->getRootNode();
         $node->children()
             ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
             ->arrayNode('format')->children()
@@ -43,7 +43,7 @@ final readonly class LogioConfiguration implements ConfigurationInterface
 
     protected function getNginxNodeDefinition(): NodeDefinition
     {
-        $node = (new TreeBuilder('nginx'))->getRootNode();
+        $node = new TreeBuilder('nginx')->getRootNode();
         $node->children()
             ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
             ->arrayNode('format')->children()
@@ -63,7 +63,7 @@ final readonly class LogioConfiguration implements ConfigurationInterface
 
     protected function getPhpFpmNodeDefinition(): NodeDefinition
     {
-        $node = (new TreeBuilder('php_fpm'))->getRootNode();
+        $node = new TreeBuilder('php_fpm')->getRootNode();
         $node->children()
             ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
             ->arrayNode('format')->children()
@@ -81,7 +81,7 @@ final readonly class LogioConfiguration implements ConfigurationInterface
 
     protected function getPhpNodeDefinition(): NodeDefinition
     {
-        $node = (new TreeBuilder('php'))->getRootNode();
+        $node = new TreeBuilder('php')->getRootNode();
         $node->children()
             ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
             ->arrayNode('format')->children()
@@ -99,7 +99,7 @@ final readonly class LogioConfiguration implements ConfigurationInterface
 
     protected function getMysqlNodeDefinition(): NodeDefinition
     {
-        $node = (new TreeBuilder('mysql'))->getRootNode();
+        $node = new TreeBuilder('mysql')->getRootNode();
         $node->children()
             ->scalarNode('path')->isRequired()->cannotBeEmpty()->end()
             ->arrayNode('format')->children()

@@ -33,7 +33,7 @@ final class Logio
     {
         foreach ($this->getParsers() as $parser) {
             if ($parser->getName() === $name) {
-                return (new Iterator($parser->getParameters()['path'], $parser))
+                return new Iterator($parser->getParameters()['path'], $parser)
                     ->setName($parser->getName());
             }
         }
@@ -47,7 +47,7 @@ final class Logio
     public function runAll(): \Generator
     {
         foreach ($this->getParsers() as $parser) {
-            yield (new Iterator($parser->getParameters()['path'], $parser))
+            yield new Iterator($parser->getParameters()['path'], $parser)
                 ->setName($parser->getName());
         }
     }

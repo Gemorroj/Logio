@@ -11,7 +11,7 @@ final readonly class Config
 
     private function __construct(array $data)
     {
-        $this->parameters = (new Processor())->processConfiguration(
+        $this->parameters = new Processor()->processConfiguration(
             new Configuration\LogioConfiguration(),
             [$data]
         );
