@@ -15,8 +15,8 @@
         "symfony/yaml": "^7.4||^8.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^12.5.1",
-        "friendsofphp/php-cs-fixer": "^3.91.3"
+        "phpunit/phpunit": "^12.5",
+        "friendsofphp/php-cs-fixer": "^3.93"
     },
     "autoload": {
         "psr-4": {
