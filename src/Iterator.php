@@ -100,10 +100,8 @@ final class Iterator implements \Iterator
 
     /**
      * Returns current line.
-     *
-     * @return string|null
      */
-    public function key()
+    public function key(): ?string
     {
         return $this->currentLine;
     }
