@@ -23,7 +23,9 @@ final class Iterator implements \Iterator
 
     public function __destruct()
     {
-        @\fclose($this->fileHandler);
+        if (null !== $this->fileHandler) {
+            @\fclose($this->fileHandler);
+        }
     }
 
     /**
@@ -33,7 +35,7 @@ final class Iterator implements \Iterator
      *
      * @return resource
      */
-    protected function getFileHandler(bool $seek = true)
+    protected function getFileHandler()
     {
         if (null === $this->fileHandler) {
             $fileHandler = @\fopen($this->logFile, 'r');
@@ -42,11 +44,11 @@ final class Iterator implements \Iterator
                 throw new ParserException('Can not open log file.');
             }
 
-            $this->fileHandler = $fileHandler;
-        }
+            if (null !== $this->seek) {
+                \fseek($fileHandler, $this->seek);
+            }
 
-        if ($seek && null !== $this->seek) {
-            \fseek($this->fileHandler, $this->seek);
+            $this->fileHandler = $fileHandler;
         }
 
         return $this->fileHandler;
@@ -113,7 +115,15 @@ final class Iterator implements \Iterator
 
     public function rewind(): void
     {
-        \rewind($this->getFileHandler());
+        $fileHandler = $this->getFileHandler();
+
+        if (null !== $this->seek) {
+            \fseek($fileHandler, $this->seek);
+        } else {
+            \rewind($fileHandler);
+        }
+
+        $this->currentLine = null;
     }
 
     public function setName(string $name): self
@@ -141,7 +151,7 @@ final class Iterator implements \Iterator
     /**
      * Seeks on a file pointer.
      */
-    public function getSeek(): int
+    public function getSeek(): ?int
     {
         return $this->seek;
     }
@@ -151,7 +161,7 @@ final class Iterator implements \Iterator
      */
     public function getTell(): ?int
     {
-        $fileHandler = $this->getFileHandler(false);
+        $fileHandler = $this->getFileHandler();
 
         $data = \ftell($fileHandler);
 

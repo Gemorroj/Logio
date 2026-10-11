@@ -38,7 +38,7 @@ final class Logio
             }
         }
 
-        throw new \InvalidArgumentException(\sprintf('Parser for "%s" nof found', $name));
+        throw new \InvalidArgumentException(\sprintf('Parser for "%s" not found', $name));
     }
 
     /**

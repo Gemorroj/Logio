@@ -67,4 +67,48 @@ final class LogioTest extends TestCase
 
         self::assertEquals(7542, $item->getTell());
     }
+
+    public function testRunUnknownParser(): void
+    {
+        $logio = new Logio($this->config);
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Parser for "unknown" not found');
+
+        $logio->run('unknown');
+    }
+
+    public function testGetSeekIsNullByDefault(): void
+    {
+        $logio = new Logio($this->config);
+
+        self::assertNull($logio->run('php_fpm')->getSeek());
+    }
+
+    public function testDestructWithoutReadingDoesNotFail(): void
+    {
+        $logio = new Logio($this->config);
+
+        $item = $logio->run('php_fpm');
+        unset($item);
+
+        self::assertTrue(true);
+    }
+
+    public function testIteratesForwardAfterSeek(): void
+    {
+        $logio = new Logio($this->config);
+        $item = $logio->run('php_fpm');
+        $item->setSeek(7353);
+
+        $positions = [];
+        foreach ($item as $line) {
+            $positions[] = $item->getTell();
+            if (\count($positions) >= 3) {
+                break;
+            }
+        }
+
+        self::assertCount(3, \array_unique($positions));
+    }
 }
