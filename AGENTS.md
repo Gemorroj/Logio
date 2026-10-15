@@ -29,6 +29,7 @@ PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix
 
 ## Conventions
 
+- Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
 - PSR-4 autoloading, strict types where already used.
 - Follow existing code style; run php-cs-fixer before committing.
 - Config example:
